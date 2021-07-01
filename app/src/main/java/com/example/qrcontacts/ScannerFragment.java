@@ -7,6 +7,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,6 +20,7 @@ import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProviders;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -45,6 +47,9 @@ public class ScannerFragment extends Fragment {
     RequestQueue queue;
     String url;
     AppDatabase db;
+    ContactViewModel contactViewModel;
+
+    public static final String EXTRA_CONTACT = "com.example.qrcontacts.EXTRA_CONTACT";
 
    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstance){
        View v = inflater.inflate(R.layout.scanner_fragment, container, false);
@@ -72,12 +77,10 @@ public class ScannerFragment extends Fragment {
                     public void onResponse(JSONObject response) {
                         try {
                             results.setText(response.get("title").toString());
-                            Contact contact = new Contact(0,"Joey", "", "0618150086", "",
-                                    "", "", "", "", "",
-                                    "", "", "", "", "");
-
-                            new Thread(new InsertContactTask(db, contact));
-
+                            contactViewModel = ViewModelProviders.of(getActivity()).get(ContactViewModel.class);
+                            String responseText = response.get("title").toString();
+                            Contact contact = new Contact(responseText, "", "", "", "", "", "", "", "", "", "", "", "", "");
+                            contactViewModel.insert(contact);
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }

@@ -31,8 +31,6 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        AppDatabase db = AppDatabase.getInstance(this);
-        
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
@@ -49,11 +47,6 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(navView, navController);
 
-        Contact contact = new Contact(0,"Joey", "", "0618150086", "",
-                "", "", "", "", "",
-                "", "", "", "", "");
-
-        new Thread(new InsertContactTask(db, contact));
     }
 
     @Override

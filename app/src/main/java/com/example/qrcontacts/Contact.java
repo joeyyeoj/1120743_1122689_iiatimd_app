@@ -9,57 +9,7 @@ import java.util.Date;
 @Entity(tableName = "contacts")
 public class Contact {
 
-    @PrimaryKey(autoGenerate = true)
-    private int uuid;
-
-    @ColumnInfo
-    private String naam;
-
-    @ColumnInfo(defaultValue = "Geen email-adres")
-    private String publieke_email;
-
-    @ColumnInfo(defaultValue = "Geen telefoonnummer")
-    private String telefoonnummer;
-
-    @ColumnInfo(defaultValue = "Geen Twitter")
-    private String twitter;
-
-    @ColumnInfo(defaultValue = "Geen Facebook")
-    private String facebook;
-
-    @ColumnInfo(defaultValue = "Geen Snapchat")
-    private String snapchat;
-
-    @ColumnInfo(defaultValue = "Geen Instagram")
-    private String instagram;
-
-    @ColumnInfo(defaultValue = "Geen LinkedIn")
-    private String linkedin;
-
-    @ColumnInfo(defaultValue = "Geen TikTok")
-    private String tiktok;
-
-    @ColumnInfo(defaultValue = "Geen geboortedatum")
-    private String geboortedatum;
-
-    @ColumnInfo(defaultValue = "Geen adres")
-    private String adres;
-
-    @ColumnInfo(defaultValue = "Geen woonplaats")
-    private String woonplaats;
-
-    @ColumnInfo(defaultValue = "Geen postcode")
-    private String postcode;
-
-    @ColumnInfo(defaultValue = "Geen land")
-    private String land;
-
-
-    public Contact(int uuid, String naam, String publieke_email, String telefoonnummer,
-                   String twitter, String facebook, String snapchat, String instagram,
-                   String linkedin, String tiktok, String geboortedatum, String adres, String woonplaats,
-                   String postcode, String land){
-        this.uuid = uuid;
+    public Contact(String naam, String publieke_email, String telefoonnummer, String twitter, String facebook, String snapchat, String instagram, String linkedin, String tiktok, String geboortedatum, String adres, String woonplaats, String postcode, String land){
         this.naam = naam;
         this.publieke_email = publieke_email;
         this.telefoonnummer = telefoonnummer;
@@ -76,8 +26,55 @@ public class Contact {
         this.land = land;
     }
 
+    @PrimaryKey(autoGenerate = true)
+    @ColumnInfo(name = "id")
+    protected int id;
+
+    @ColumnInfo(name = "naam")
+    private String naam;
+
+    @ColumnInfo(name = "publieke_email")
+    private String publieke_email;
+
+    @ColumnInfo(name = "telefoonnummer")
+    private String telefoonnummer;
+
+    @ColumnInfo(name = "twitter")
+    private String twitter;
+
+    @ColumnInfo(name = "facebook")
+    private String facebook;
+
+    @ColumnInfo(name = "snapchat")
+    private String snapchat;
+
+    @ColumnInfo(name = "instagram")
+    private String instagram;
+
+    @ColumnInfo(name = "linkedin")
+    private String linkedin;
+
+    @ColumnInfo(name = "tiktok")
+    private String tiktok;
+
+    @ColumnInfo(name = "geboortedatum")
+    private String geboortedatum;
+
+    @ColumnInfo(name = "adres")
+    private String adres;
+
+    @ColumnInfo(name = "woonplaats")
+    private String woonplaats;
+
+    @ColumnInfo(name = "postcode")
+    private String postcode;
+
+    @ColumnInfo(name = "land")
+    private String land;
+
+
     public int getUuid(){
-        return this.uuid;
+        return this.id;
     }
 
     public String getNaam() {

@@ -12,6 +12,6 @@ public class GetContactsTask implements Runnable {
 
     @Override
     public void run(){
-        fragment.setContacts(db.contactsDAO().getAll());
+
     }
 }
