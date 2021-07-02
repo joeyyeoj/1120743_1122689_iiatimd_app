@@ -5,4 +5,21 @@
     <string name="title_scan">Scannen</string>
     <string name="title_contacts">Contactboek</string>
     <string name="noscanyet">Nog niets gescand :(</string>
+    <string name="naamLabel">Naam:</string>
+    <string name="emailLabel">Email:</string>
+    <string name="telefoonnummerLabel">Telefoon:</string>
+    <string name="twitterLabel">Twitter:</string>
+    <string name="facebookLabel">Facebook:</string>
+    <string name="snapchatLabel">Snapchat:</string>
+    <string name="instagramLabel">Instagram:</string>
+    <string name="linkedinLabel">LinkedIn:</string>
+    <string name="tiktokLabel">TikTok:</string>
+    <string name="geboortedatumLabel">Verjaardag:</string>
+    <string name="adresLabel">Adres:</string>
+    <string name="woonplaatsLabel">Woonplaats:</string>
+    <string name="postcodeLabel">Postcode:</string>
+    <string name="landLabel">Land:</string>
+    <string name="opslaanLabel">Toevoegen aan contacten</string>
+
+
 </resources>

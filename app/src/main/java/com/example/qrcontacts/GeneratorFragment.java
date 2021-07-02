@@ -20,7 +20,7 @@ public class GeneratorFragment extends Fragment {
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstance){
         View v = inflater.inflate(R.layout.generator_fragment, container, false);
-        qrvalue = "https://jsonplaceholder.typicode.com/todos/1";
+        qrvalue = "https://polar-anchorage-54627.herokuapp.com/api/getContact/1";
         qrImage = (ImageView)v.findViewById(R.id.qrImage);
         QRGEncoder qrgEncoder = new QRGEncoder(qrvalue, null, QRGContents.Type.TEXT, 500);
         Bitmap qrBits = qrgEncoder.getBitmap();

@@ -23,10 +23,8 @@
     <fragment
         android:id="@+id/navHostFragment"
         android:name="androidx.navigation.fragment.NavHostFragment"
-        android:layout_width="409dp"
-        android:layout_height="670dp"
-        android:layout_marginTop="3dp"
-        android:layout_marginBottom="3dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:background="#FFFFFF"
         app:defaultNavHost="true"
         app:layout_constraintBottom_toTopOf="@+id/bottomNav_view"
