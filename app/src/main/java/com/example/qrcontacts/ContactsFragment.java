@@ -1,5 +1,6 @@
 package com.example.qrcontacts;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -36,8 +37,14 @@ public class ContactsFragment extends Fragment {
         contactViewModel.getAllContacts().observe(this, new Observer<List<Contact>>() {
             @Override
             public void onChanged(List<Contact> contacts) {
-                Log.d("loggie", "hoerending");
                 adapter.setContacts(contacts);
+            }
+        });
+
+        adapter.setOnItemClickListener(new ContactAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(Contact contact) {
+
             }
         });
 
