@@ -20,4 +20,5 @@
     <string name="postcodeLabel">Postcode:</string>
     <string name="landLabel">Land:</string>
     <string name="opslaanLabel">Toevoegen aan contacten</string>
+    <string name="closeContactLabel">Sluiten</string>
 </resources>

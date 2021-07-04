@@ -14,8 +14,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ContactHolder> {
-    private List<Contact> contacts = new ArrayList<>();
+    protected List<Contact> contacts = new ArrayList<>();
     private OnItemClickListener listener;
+    protected List<Contact> untouchedContacts = new ArrayList<>();
 
 
     @NonNull
@@ -39,6 +40,7 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ContactH
 
     public void setContacts(List<Contact> contacts){
         this.contacts = contacts;
+        this.untouchedContacts = contacts;
         notifyDataSetChanged();
     }
 
@@ -67,5 +69,23 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ContactH
 
     public void setOnItemClickListener(OnItemClickListener listener){
         this.listener = listener;
+    }
+
+    public void filterContactList(String filterText){
+        List<Contact> filteredContacts = new ArrayList<>();
+
+        if(filterText != null){
+            for(Contact contact : this.untouchedContacts){
+                if(contact.getNaam().startsWith(filterText)){
+                    filteredContacts.add(contact);
+                }
+            }
+            this.contacts = filteredContacts;
+            notifyDataSetChanged();
+        }
+        else{
+            this.contacts = untouchedContacts;
+        }
+
     }
 }

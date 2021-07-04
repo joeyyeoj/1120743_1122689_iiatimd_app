@@ -1,25 +1,16 @@
 package com.example.qrcontacts;
 
-import android.Manifest;
-import android.app.AlertDialog;
-import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.os.Bundle;
-import android.os.Parcelable;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
-import androidx.annotation.NonNull;
+
 import androidx.annotation.Nullable;
 import androidx.cardview.widget.CardView;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 
@@ -28,19 +19,14 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.budiyev.android.codescanner.AutoFocusMode;
-import com.budiyev.android.codescanner.CodeScanner;
-import com.budiyev.android.codescanner.CodeScannerView;
-import com.budiyev.android.codescanner.DecodeCallback;
-import com.google.zxing.Result;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
 import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
+
+
 
 
 public class ScannerFragment extends Fragment {
@@ -87,12 +73,15 @@ public class ScannerFragment extends Fragment {
        postcodeValue  = v.findViewById(R.id.postcodeValue);
        landValue  = v.findViewById(R.id.landValue);
        results = v.findViewById(R.id.qrResult);
-       opslaanButton = v.findViewById(R.id.addContactButton);
-
+       results.setVisibility(View.INVISIBLE);
+       opslaanButton = v.findViewById(R.id.closeContactButton);
        opslaanButton.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View v) {
                contactViewModel.insert(contact);
+               scannedContact.setVisibility(View.INVISIBLE);
+               results.setText(contact.getNaam() + " toegevoegd aan contacten!");
+               results.setVisibility(View.VISIBLE);
            }
        });
        queue =  Volley.newRequestQueue(v.getContext());
@@ -115,57 +104,69 @@ public class ScannerFragment extends Fragment {
         IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
         if(result != null) {
             if(result.getContents() == null) {
+                results.setText("Scanner gestopt :(");
+                results.setVisibility(View.VISIBLE);
                 Toast.makeText(getContext(), "Gestopt :(", Toast.LENGTH_LONG).show();
             } else {
                 JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, result.getContents(), null, new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
-                        try {
-                            JSONObject contactInfo = new JSONObject();
-                            contactInfo = (JSONObject) response.get("contactInfo");
-                            results.setText(contactInfo.getString("naam"));
-                            String contactNaam = contactInfo.getString("naam");
-                            String contactEmail = contactInfo.getString("publieke_email");
-                            String contactTelefoonnummer = contactInfo.getString("telefoonnummer");
-                            String contactTwitter = contactInfo.getString("twitter");
-                            String contactFacebook = contactInfo.getString("facebook");
-                            String contactSnapchat = contactInfo.getString("snapchat");
-                            String contactInstagram = contactInfo.getString("instagram");
-                            String contactLinkedIn = contactInfo.getString("linkedin");
-                            String contactTikTok = contactInfo.getString("tiktok");
-                            String contactGeboortedatum = contactInfo.getString("geboortedatum");
-                            String contactAdres = contactInfo.getString("adres");
-                            String contactWoonplaats = contactInfo.getString("woonplaats");
-                            String contactPostcode = contactInfo.getString("postcode");
-                            String contactLand = contactInfo.getString("land");
-                            contactViewModel = ViewModelProviders.of(getActivity()).get(ContactViewModel.class);
-                            contact = new Contact(contactNaam, contactEmail, contactTelefoonnummer, contactTwitter, contactFacebook, contactSnapchat, contactInstagram, contactLinkedIn, contactTikTok, contactGeboortedatum, contactAdres, contactWoonplaats, contactPostcode, contactLand);
+                        if(result.getContents().startsWith("https://api-iiatmd.tychovanveen.nl/public/api/get_user/")){
+                            try {
+                                JSONObject contactResponse = new JSONObject();
+                                contactResponse = response;
+                                JSONArray userInfoArray = new JSONArray();
+                                userInfoArray = (JSONArray) response.get("user");
+                                JSONObject contactObject = new JSONObject();
+                                contactObject = (JSONObject) userInfoArray.get(0);
+                                String contactNaam = contactObject.getString("name");
+                                String contactEmail = contactObject.getString("public_email");
+                                String contactTelefoonnummer = contactObject.getString("telefoonnummer");
+                                String contactTwitter = contactObject.getString("twitter");
+                                String contactFacebook = contactObject.getString("facebook");
+                                String contactSnapchat = contactObject.getString("snapchat");
+                                String contactInstagram = contactObject.getString("instagram");
+                                String contactLinkedIn = contactObject.getString("linkedin");
+                                String contactTikTok = contactObject.getString("tiktok");
+                                String contactGeboortedatum = contactObject.getString("geboortedatum");
+                                String contactAdres = contactObject.getString("adres");
+                                String contactWoonplaats = contactObject.getString("woonplaats");
+                                String contactPostcode = contactObject.getString("postcode");
+                                String contactLand = contactObject.getString("land");
+                                contactViewModel = ViewModelProviders.of(getActivity()).get(ContactViewModel.class);
+                                contact = new Contact(contactNaam, contactEmail, contactTelefoonnummer, contactTwitter, contactFacebook, contactSnapchat, contactInstagram, contactLinkedIn, contactTikTok, "test", contactAdres, contactWoonplaats, contactPostcode, contactLand);
+                                naamValue.setText(contactNaam);
+                                emailValue.setText(contactEmail);
+                                telefoonValue.setText(contactTelefoonnummer);
+                                twitterValue.setText(contactTwitter);
+                                facebookValue.setText(contactFacebook);
+                                snapchatValue.setText(contactSnapchat);
+                                instagramValue.setText(contactInstagram);
+                                linkedinValue.setText(contactLinkedIn);
+                                tiktokValue.setText(contactTikTok);
+                                geboortedatumValue.setText(contactGeboortedatum);
+                                adresValue.setText(contactAdres);
+                                woonplaatsValue.setText(contactWoonplaats);
+                                postcodeValue.setText(contactPostcode);
+                                landValue.setText(contactLand);
+                                scannedContact.setVisibility(View.VISIBLE);
 
-                            naamValue.setText(contactNaam);
-                            emailValue.setText(contactEmail);
-                            telefoonValue.setText(contactTelefoonnummer);
-                            twitterValue.setText(contactTwitter);
-                            facebookValue.setText(contactFacebook);
-                            snapchatValue.setText(contactSnapchat);
-                            instagramValue.setText(contactInstagram);
-                            linkedinValue.setText(contactLinkedIn);
-                            tiktokValue.setText(contactTikTok);
-                            geboortedatumValue.setText(contactGeboortedatum);
-                            adresValue.setText(contactAdres);
-                            woonplaatsValue.setText(contactWoonplaats);
-                            postcodeValue.setText(contactPostcode);
-                            landValue.setText(contactLand);
-                            scannedContact.setVisibility(View.VISIBLE);
-
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                            results.setText("Oepsie woepsie er is iets heul erg misgegaan :( Misschien kun je het opnieuw pwoberen?");
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                                results.setText(e.toString());
+                                results.setVisibility(View.VISIBLE);
+                            }
+                        }
+                        else{
+                            results.setText("Oeps! Dat is geen geldige QR code :(");
+                            results.setVisibility(View.VISIBLE);
                         }
                     }
                 }, new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        results.setText(error.toString());
+                        results.setText("Oepsie, er is iets misgegaan met het ophalen van je nieuwe contact :( Weet je zeker dat je een QR code uit de app gebruikt en dat je internet het doet?");
+                        results.setVisibility(View.VISIBLE);
                     }
                 });
                 VolleySingleton.getInstance(getActivity()).addToRequestQueue(jsonObjectRequest);
