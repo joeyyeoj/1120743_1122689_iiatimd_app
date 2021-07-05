@@ -3,9 +3,11 @@ package com.example.qrcontacts;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.Nullable;
+import android.content.SharedPreferences;
+import android.os.Bundle;
+import android.preference.PreferenceManager;
+
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -27,6 +29,8 @@ import java.util.List;
 
 import androidmads.library.qrgenearator.QRGContents;
 import androidmads.library.qrgenearator.QRGEncoder;
+
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {
     NavController navController;
@@ -50,8 +54,9 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(navView, navController);
 
-
-
+        //tijdelijke logout
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
+        prefs.edit().putString("token", null).commit();
     }
 
     @Override
