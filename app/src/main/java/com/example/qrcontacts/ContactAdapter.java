@@ -76,7 +76,7 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ContactH
 
         if(filterText != null){
             for(Contact contact : this.untouchedContacts){
-                if(contact.getNaam().toLowerCase().startsWith(filterText.toLowerCase())){
+                if(contact.getNaam().toLowerCase().contains(filterText.toLowerCase())){
                     filteredContacts.add(contact);
                 }
             }

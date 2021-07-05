@@ -23,4 +23,5 @@
     <string name="closeContactLabel">Sluiten</string>
     <string name="delenButtonText">Delen</string>
     <string name="opslaanbuttontekst">Opslaan</string>
+    <string name="logoutKnopText">Uitloggen</string>
 </resources>
