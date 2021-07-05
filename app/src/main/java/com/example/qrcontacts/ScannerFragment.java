@@ -13,6 +13,8 @@ import androidx.annotation.Nullable;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -80,8 +82,8 @@ public class ScannerFragment extends Fragment {
            public void onClick(View v) {
                contactViewModel.insert(contact);
                scannedContact.setVisibility(View.INVISIBLE);
-               results.setText(contact.getNaam() + " toegevoegd aan contacten!");
-               results.setVisibility(View.VISIBLE);
+               NavController navcontroller = Navigation.findNavController(v);
+               navcontroller.navigate(R.id.navigation_contacts);
            }
        });
        queue =  Volley.newRequestQueue(v.getContext());

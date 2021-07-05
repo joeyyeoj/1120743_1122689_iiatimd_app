@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">QrContacts</string>
     <string name="scan_button">Scannen</string>
-    <string name="title_home">Home</string>
+    <string name="title_home">Mijn profiel</string>
     <string name="title_scan">Scannen</string>
     <string name="title_contacts">Contactboek</string>
     <string name="noscanyet">Nog niets gescand :(</string>
@@ -21,4 +21,6 @@
     <string name="landLabel">Land:</string>
     <string name="opslaanLabel">Toevoegen aan contacten</string>
     <string name="closeContactLabel">Sluiten</string>
+    <string name="delenButtonText">Delen</string>
+    <string name="opslaanbuttontekst">Opslaan</string>
 </resources>
