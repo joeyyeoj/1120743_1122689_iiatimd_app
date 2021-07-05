@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.Editable;
+import android.text.InputType;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -66,15 +67,6 @@ public class ContactsFragment extends Fragment {
         woonplaatsValue  = v.findViewById(R.id.woonplaatsValue);
         postcodeValue  = v.findViewById(R.id.postcodeValue);
         landValue  = v.findViewById(R.id.landValue);
-
-        closeContactButton = v.findViewById(R.id.closeContactButton);
-        closeContactButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                clickedContact.setVisibility(View.INVISIBLE);
-            }
-        });
-
         searchbar = v.findViewById(R.id.searchbar);
         searchbar.addTextChangedListener(new TextWatcher(){
 
@@ -93,6 +85,16 @@ public class ContactsFragment extends Fragment {
 
             }
         });
+        searchbar.setInputType(InputType.TYPE_CLASS_TEXT);
+        closeContactButton = v.findViewById(R.id.closeContactButton);
+        closeContactButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                clickedContact.setVisibility(View.INVISIBLE);
+            }
+        });
+
+
 
 
         RecyclerView recyclerView = v.findViewById(R.id.contactRecyclerView);
@@ -127,6 +129,7 @@ public class ContactsFragment extends Fragment {
                 postcodeValue.setText(contact.getPostcode());
                 landValue.setText(contact.getLand());
                 clickedContact.setVisibility(View.VISIBLE);
+                clickedContact.requestFocus();
             }
         });
 
