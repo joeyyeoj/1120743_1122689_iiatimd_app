@@ -5,6 +5,10 @@
         android:icon="@drawable/ic_baseline_home_24"
         android:title="@string/title_home" />
     <item
+    android:id="@+id/qrcode_show"
+    android:icon="@drawable/ic_baseline_share_24"
+    android:title="@string/menuDelen" />
+    <item
         android:id="@+id/navigation_scan"
         android:icon="@drawable/ic_baseline_qr_code_scanner_24"
         android:title="@string/title_scan" />

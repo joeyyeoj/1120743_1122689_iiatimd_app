@@ -14,7 +14,7 @@
     <fragment
         android:id="@+id/qrcode_show"
         android:name="com.example.qrcontacts.GeneratorFragment"
-        android:label="@string/title_home"
+        android:label="@string/menuDelen"
         tools:layout="@layout/generator_fragment" />
 
     <fragment
