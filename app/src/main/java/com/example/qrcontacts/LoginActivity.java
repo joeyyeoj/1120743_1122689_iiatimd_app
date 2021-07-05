@@ -3,7 +3,9 @@ package com.example.qrcontacts;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -28,6 +30,7 @@ public class LoginActivity extends AppCompatActivity {
     EditText edtUsername;
     EditText edtPassword;
     Button btnLogin;
+    String token;
     final String BASE_URL = "https://api-iiatmd.tychovanveen.nl/public/api/";
 
     @Override
@@ -38,6 +41,15 @@ public class LoginActivity extends AppCompatActivity {
         edtUsername = (EditText) findViewById(R.id.edtUsername);
         edtPassword = (EditText) findViewById(R.id.edtPassword);
         btnLogin = (Button) findViewById(R.id.btnLogin);
+
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(LoginActivity.this);
+        token = prefs.getString("token", null);
+
+        if (token != null) {
+            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+            startActivity(intent);
+        }
+
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -73,15 +85,15 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onResponse(JSONObject response) {
                 try {
-                    Log.d("response", response.get("token").toString());
+                    Log.d("token", response.get("token").toString());
                     if (response.get("success").toString().equals("true")) {
+                        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(LoginActivity.this);
+                        prefs.edit().putString("token", response.get("token").toString()).commit();
                         Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                        intent.putExtra("token", response.get("token").toString());
                         startActivity(intent);
-                    } else {
-                        Toast.makeText(LoginActivity.this, "Het wachtwoord of emailadres is verkeerd", Toast.LENGTH_SHORT).show();
                     }
                 } catch (JSONException e) {
+                    Toast.makeText(LoginActivity.this, "Het wachtwoord of emailadres is verkeerd", Toast.LENGTH_SHORT).show();
                     e.printStackTrace();
                 }
             }
@@ -94,34 +106,4 @@ public class LoginActivity extends AppCompatActivity {
                 });
         VolleySingleton.getInstance(this.getApplicationContext()).addToRequestQueue(jsonObjectRequest);
     }
-
-//    private void doLogin(final String username,final String password){
-//        Call<ResponseBody> call = userService.login(username,password);
-//        Log.d("response", call.toString());
-//        call.enqueue(new Callback() {
-//            @Override
-//            public void onResponse(Call call, Response response) {
-//                if(response.isSuccessful()){
-//                    ResObj resObj = (ResObj) response.body();
-//                    Log.d("response", resObj.getMessage());
-//                    if(resObj.getMessage().equals("true")){
-//                        //login start main activity
-//                        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-//                        intent.putExtra("username", username);
-//                        startActivity(intent);
-//
-//                    } else {
-//                        Toast.makeText(LoginActivity.this, "The username or password is incorrect", Toast.LENGTH_SHORT).show();
-//                    }
-//                } else {
-//                    Toast.makeText(LoginActivity.this, "Error! Please try again!", Toast.LENGTH_SHORT).show();
-//                }
-//            }
-//
-//            @Override
-//            public void onFailure(Call call, Throwable t) {
-//                Toast.makeText(LoginActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
-//            }
-//        });
-//    }
 }
