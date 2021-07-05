@@ -107,7 +107,7 @@ public class LoginActivity extends AppCompatActivity {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Log.d("response", error.getMessage());
+                        Toast.makeText(LoginActivity.this, "Er is wat misgegaan :( Weet je zeker dat je internet hebt?", Toast.LENGTH_SHORT).show();
                     }
                 });
         VolleySingleton.getInstance(this.getApplicationContext()).addToRequestQueue(jsonObjectRequest);

@@ -1,5 +1,6 @@
 package com.example.qrcontacts;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -32,6 +33,7 @@ import java.util.Map;
 public class ProfileFragment extends Fragment {
     Button delenbutton;
     Button opslaanButton;
+    Button logoutButton;
     EditText naamInput;
     EditText telefoonInput;
     EditText emailInput;
@@ -59,10 +61,38 @@ public class ProfileFragment extends Fragment {
         birthdayInput = v.findViewById(R.id.birthdayInput);
         delenbutton = v.findViewById(R.id.delenButton);
         opslaanButton = v.findViewById(R.id.opslaanButton);
+        logoutButton = v.findViewById(R.id.logoutButton);
 //        token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvYXBpLWlpYXRtZC50eWNob3ZhbnZlZW4ubmxcL3B1YmxpY1wvYXBpXC9sb2dpbiIsImlhdCI6MTYyNTM4Nzk5MiwibmJmIjoxNjI1Mzg3OTkyLCJqdGkiOiJYMkRrQ0pRVFFLVHNpNzg0Iiwic3ViIjoxLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0._WYYrRMGioucJv_RZ-ey6HCm7U6d8FRWvSeoWq6QtEY";
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getContext());
         token = prefs.getString("token", null);
 
+        logoutButton.setOnClickListener(new View.OnClickListener() {
+            String logoutUrl = "https://api-iiatmd.tychovanveen.nl/public/api/logout?token=" + token;
+
+            @Override
+            public void onClick(View v) {
+                JsonObjectRequest logoutRequest = new JsonObjectRequest(Request.Method.GET, logoutUrl, null, new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        try {
+                            SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getContext());
+                            prefs.edit().putString("token", null).commit();
+                            Intent intent = new Intent(getContext(), LoginActivity.class);
+                            startActivity(intent);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                            Log.d("exception123", e.toString());
+                        }
+                    }
+                }, new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(getContext(), "Er is iets misgegaan met het uitloggen", Toast.LENGTH_LONG).show();
+                    }
+                });
+                VolleySingleton.getInstance(getActivity()).addToRequestQueue(logoutRequest);
+            }
+        });
 
         delenbutton.setOnClickListener(new View.OnClickListener() {
             @Override
