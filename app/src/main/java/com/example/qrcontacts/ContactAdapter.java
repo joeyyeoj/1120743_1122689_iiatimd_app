@@ -30,7 +30,7 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ContactH
     @Override
     public void onBindViewHolder(@NonNull ContactHolder holder, int position) {
         Contact currentContact = contacts.get(position);
-        holder.textViewNaam.setText(currentContact.getNaam());
+        holder.textViewNaam.setText(currentContact.getName());
     }
 
     @Override
@@ -76,7 +76,7 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ContactH
 
         if(filterText != null){
             for(Contact contact : this.untouchedContacts){
-                if(contact.getNaam().toLowerCase().contains(filterText.toLowerCase())){
+                if(contact.getName().toLowerCase().contains(filterText.toLowerCase())){
                     filteredContacts.add(contact);
                 }
             }

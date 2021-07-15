@@ -11,7 +11,7 @@ import java.util.List;
 
 @Dao
 public interface ContactDAO {
-    @Query("SELECT * FROM contacts ORDER BY naam ASC")
+    @Query("SELECT * FROM contacts ORDER BY name ASC")
     LiveData<List<Contact>> getAllContacts();
 
     @Insert

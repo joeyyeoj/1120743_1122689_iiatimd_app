@@ -9,9 +9,10 @@ import java.util.Date;
 @Entity(tableName = "contacts")
 public class Contact {
 
-    public Contact(String naam, String publieke_email, String telefoonnummer, String twitter, String facebook, String snapchat, String instagram, String linkedin, String tiktok, String geboortedatum, String adres, String woonplaats, String postcode, String land){
-        this.naam = naam;
-        this.publieke_email = publieke_email;
+    public Contact(int databaseId, String name, String public_email, String telefoonnummer, String twitter, String facebook, String snapchat, String instagram, String linkedin, String tiktok, String geboortedatum){
+        this.databaseId = databaseId;
+        this.name = name;
+        this.public_email = public_email;
         this.telefoonnummer = telefoonnummer;
         this.twitter = twitter;
         this.facebook = facebook;
@@ -20,21 +21,20 @@ public class Contact {
         this.linkedin = linkedin;
         this.tiktok = tiktok;
         this.geboortedatum = geboortedatum;
-        this.adres = adres;
-        this.woonplaats = woonplaats;
-        this.postcode = postcode;
-        this.land = land;
     }
 
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "id")
     protected int id;
 
-    @ColumnInfo(name = "naam")
-    private String naam;
+    @ColumnInfo(name = "databaseId")
+    protected int databaseId;
 
-    @ColumnInfo(name = "publieke_email")
-    private String publieke_email;
+    @ColumnInfo(name = "name")
+    private String name;
+
+    @ColumnInfo(name = "public_email")
+    private String public_email;
 
     @ColumnInfo(name = "telefoonnummer")
     private String telefoonnummer;
@@ -60,29 +60,20 @@ public class Contact {
     @ColumnInfo(name = "geboortedatum")
     private String geboortedatum;
 
-    @ColumnInfo(name = "adres")
-    private String adres;
-
-    @ColumnInfo(name = "woonplaats")
-    private String woonplaats;
-
-    @ColumnInfo(name = "postcode")
-    private String postcode;
-
-    @ColumnInfo(name = "land")
-    private String land;
 
 
     public int getUuid(){
         return this.id;
     }
 
-    public String getNaam() {
-        return this.naam;
+    public int getDatabaseId(){ return this.databaseId; }
+
+    public String getName() {
+        return this.name;
     }
 
-    public String getPublieke_email() {
-        return this.publieke_email;
+    public String getPublic_email() {
+        return this.public_email;
     }
 
     public String getTelefoonnummer(){
@@ -117,19 +108,4 @@ public class Contact {
         return this.geboortedatum;
     }
 
-    public String getAdres(){
-        return this.adres;
-    }
-
-    public String getWoonplaats(){
-        return this.woonplaats;
-    }
-
-    public String getPostcode(){
-        return this.postcode;
-    }
-
-    public String getLand(){
-        return this.land;
-    }
 }

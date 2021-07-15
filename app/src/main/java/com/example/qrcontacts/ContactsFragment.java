@@ -40,10 +40,6 @@ public class ContactsFragment extends Fragment {
     TextView linkedinValue;
     TextView tiktokValue;
     TextView geboortedatumValue;
-    TextView adresValue;
-    TextView woonplaatsValue;
-    TextView postcodeValue;
-    TextView landValue;
     Button closeContactButton;
     EditText searchbar;
     ContactAdapter adapter;
@@ -63,10 +59,6 @@ public class ContactsFragment extends Fragment {
         linkedinValue = v.findViewById(R.id.linkedinValue);
         tiktokValue = v.findViewById(R.id.tiktokValue);
         geboortedatumValue = v.findViewById(R.id.geboortedatumValue);
-        adresValue  = v.findViewById(R.id.adresValue);
-        woonplaatsValue  = v.findViewById(R.id.woonplaatsValue);
-        postcodeValue  = v.findViewById(R.id.postcodeValue);
-        landValue  = v.findViewById(R.id.landValue);
         searchbar = v.findViewById(R.id.searchbar);
         searchbar.addTextChangedListener(new TextWatcher(){
 
@@ -114,8 +106,8 @@ public class ContactsFragment extends Fragment {
         adapter.setOnItemClickListener(new ContactAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(Contact contact) {
-                naamValue.setText(contact.getNaam());
-                emailValue.setText(contact.getPublieke_email());
+                naamValue.setText(contact.getName());
+                emailValue.setText(contact.getPublic_email());
                 telefoonValue.setText(contact.getTelefoonnummer());
                 twitterValue.setText(contact.getTwitter());
                 facebookValue.setText(contact.getFacebook());
@@ -124,10 +116,6 @@ public class ContactsFragment extends Fragment {
                 linkedinValue.setText(contact.getLinkedin());
                 tiktokValue.setText(contact.getTiktok());
                 geboortedatumValue.setText(contact.getGeboortedatum());
-                adresValue.setText(contact.getAdres());
-                woonplaatsValue.setText(contact.getWoonplaats());
-                postcodeValue.setText(contact.getPostcode());
-                landValue.setText(contact.getLand());
                 clickedContact.setVisibility(View.VISIBLE);
                 clickedContact.requestFocus();
             }

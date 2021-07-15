@@ -10,7 +10,7 @@ import androidx.room.Room;
 import androidx.room.RoomDatabase;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 
-@Database(entities = {Contact.class}, version = 88)
+@Database(entities = {Contact.class}, version = 696969)
 public abstract class AppDatabase extends RoomDatabase {
     public abstract ContactDAO contactsDAO();
 
@@ -40,9 +40,9 @@ public abstract class AppDatabase extends RoomDatabase {
 
         @Override
         protected Void doInBackground(Void... voids) {
-            contactDAO.InsertContact(new Contact( "Joey 1", "test@test.com", "42069", "test", "test", "test", "test", "test", "test", "test", "test", "test", "test", "test"));
-            contactDAO.InsertContact(new Contact("Joey 3", "", "", "", "", "", "", "", "", "", "", "", "", ""));
-            contactDAO.InsertContact(new Contact("Joey 2", "", "", "", "", "", "", "", "", "", "", "", "", ""));
+//            contactDAO.InsertContact(new Contact( "Joey 1", "test@test.com", "42069", "test", "test", "test", "test", "test", "test", "test", "test", "test", "test", "test"));
+//            contactDAO.InsertContact(new Contact("Joey 3", "", "", "", "", "", "", "", "", "", "", "", "", ""));
+//            contactDAO.InsertContact(new Contact("Joey 2", "", "", "", "", "", "", "", "", "", "", "", "", ""));
             return null;
         }
     }

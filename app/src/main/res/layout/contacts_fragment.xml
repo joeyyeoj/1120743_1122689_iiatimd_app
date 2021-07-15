@@ -231,50 +231,6 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
 
-            <TextView
-                android:id="@+id/woonplaatsValue"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="50dp"
-                android:layout_marginTop="407dp"
-                android:layout_marginEnd="252dp"
-                android:layout_marginBottom="72dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="1.0" />
-
-            <TextView
-                android:id="@+id/postcodeValue"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="204dp"
-                android:layout_marginTop="374dp"
-                android:layout_marginEnd="143dp"
-                android:layout_marginBottom="100dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="1.0" />
-
-            <TextView
-                android:id="@+id/landValue"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="204dp"
-                android:layout_marginTop="407dp"
-                android:layout_marginEnd="143dp"
-                android:layout_marginBottom="72dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
             <ImageView
                 android:id="@+id/imageView6"
                 android:layout_width="25dp"
@@ -378,22 +334,8 @@
                 app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.0"
+                app:layout_constraintVertical_bias="1.0"
                 app:srcCompat="@drawable/ic_iconmonstr_candy_18" />
-
-            <ImageView
-                android:id="@+id/imageView13"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="15dp"
-                android:layout_marginTop="393dp"
-                android:layout_marginEnd="268dp"
-                android:layout_marginBottom="88dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/ic_iconmonstr_home_6" />
 
             <ImageView
                 android:id="@+id/imageView14"
@@ -440,20 +382,6 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@drawable/ic_iconmonstr_phone_1" />
-
-            <TextView
-                android:id="@+id/adresValue"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="50dp"
-                android:layout_marginTop="379dp"
-                android:layout_marginEnd="252dp"
-                android:layout_marginBottom="100dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

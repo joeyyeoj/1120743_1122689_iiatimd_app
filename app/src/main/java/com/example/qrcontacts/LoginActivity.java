@@ -28,7 +28,7 @@ public class LoginActivity extends AppCompatActivity {
     Button btnLogin;
     Button btnRegister;
     String token;
-    final String BASE_URL = "https://api-iiatmd.tychovanveen.nl/public/api/";
+    final String BASE_URL = "https://polar-anchorage-54627.herokuapp.com/api/";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -49,10 +49,6 @@ public class ScannerFragment extends Fragment {
     TextView linkedinValue;
     TextView tiktokValue;
     TextView geboortedatumValue;
-    TextView adresValue;
-    TextView woonplaatsValue;
-    TextView postcodeValue;
-    TextView landValue;
     Button opslaanButton;
 
 
@@ -70,10 +66,6 @@ public class ScannerFragment extends Fragment {
        linkedinValue = v.findViewById(R.id.linkedinValue);
        tiktokValue = v.findViewById(R.id.tiktokValue);
        geboortedatumValue = v.findViewById(R.id.geboortedatumValue);
-       adresValue  = v.findViewById(R.id.adresValue);
-       woonplaatsValue  = v.findViewById(R.id.woonplaatsValue);
-       postcodeValue  = v.findViewById(R.id.postcodeValue);
-       landValue  = v.findViewById(R.id.landValue);
        results = v.findViewById(R.id.qrResult);
        results.setVisibility(View.INVISIBLE);
        opslaanButton = v.findViewById(R.id.closeContactButton);
@@ -136,7 +128,7 @@ public class ScannerFragment extends Fragment {
                                 String contactPostcode = contactObject.getString("postcode");
                                 String contactLand = contactObject.getString("land");
                                 contactViewModel = ViewModelProviders.of(getActivity()).get(ContactViewModel.class);
-                                contact = new Contact(contactNaam, contactEmail, contactTelefoonnummer, contactTwitter, contactFacebook, contactSnapchat, contactInstagram, contactLinkedIn, contactTikTok, "test", contactAdres, contactWoonplaats, contactPostcode, contactLand);
+//                                contact = new Contact(contactNaam, contactEmail, contactTelefoonnummer, contactTwitter, contactFacebook, contactSnapchat, contactInstagram, contactLinkedIn, contactTikTok, "test", contactAdres, contactWoonplaats, contactPostcode, contactLand);
                                 naamValue.setText(contactNaam);
                                 emailValue.setText(contactEmail);
                                 telefoonValue.setText(contactTelefoonnummer);
@@ -147,10 +139,6 @@ public class ScannerFragment extends Fragment {
                                 linkedinValue.setText(contactLinkedIn);
                                 tiktokValue.setText(contactTikTok);
                                 geboortedatumValue.setText(contactGeboortedatum);
-                                adresValue.setText(contactAdres);
-                                woonplaatsValue.setText(contactWoonplaats);
-                                postcodeValue.setText(contactPostcode);
-                                landValue.setText(contactLand);
                                 scannedContact.setVisibility(View.VISIBLE);
 
                             } catch (Exception e) {
