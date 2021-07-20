@@ -165,18 +165,18 @@ public class ProfileFragment extends Fragment {
             public void onResponse(JSONObject response) {
                 try {
                     JSONObject userObject = new JSONObject();
-                    userObject = response.getJSONObject("user");
-                    userLoginEmail = userObject.getString("email");
-                    naamInput.setText(userObject.getString("name"));
-                    emailInput.setText(userObject.getString("public_email"));
-                    telefoonInput.setText(userObject.getString("telefoonnummer"));
-                    twitterInput.setText(userObject.getString("twitter"));
-                    facebookInput.setText(userObject.getString("facebook"));
-                    instagramInput.setText(userObject.getString("instagram"));
-                    snapchatInput.setText(userObject.getString("snapchat"));
-                    linkedinInput.setText(userObject.getString("linkedin"));
-                    tiktokInput.setText(userObject.getString("tiktok"));
-                    birthdayInput.setText(userObject.getString("geboortedatum"));
+//                    userObject = response.getJSONObject("user");
+//                    userLoginEmail = userObject.getString("email");
+//                    naamInput.setText(userObject.getString("name"));
+//                    emailInput.setText(userObject.getString("public_email"));
+//                    telefoonInput.setText(userObject.getString("telefoonnummer"));
+//                    twitterInput.setText(userObject.getString("twitter"));
+//                    facebookInput.setText(userObject.getString("facebook"));
+//                    instagramInput.setText(userObject.getString("instagram"));
+//                    snapchatInput.setText(userObject.getString("snapchat"));
+//                    linkedinInput.setText(userObject.getString("linkedin"));
+//                    tiktokInput.setText(userObject.getString("tiktok"));
+//                    birthdayInput.setText(userObject.getString("geboortedatum"));
                 } catch (Exception e) {
                     e.printStackTrace();
                     Log.d("exception123", e.toString());
