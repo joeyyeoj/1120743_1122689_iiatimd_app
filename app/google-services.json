@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1037261507168",
+    "project_id": "iatiimd-pushnotifs",
+    "storage_bucket": "iatiimd-pushnotifs.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1037261507168:android:be695c8fdd34ff4e349105",
+        "android_client_info": {
+          "package_name": "com.example.qrcontacts"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1037261507168-s52mp70o944ld3ge4qisseumcrmub8j5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB0oNi5pK06Rpklctb0Qq6BxJ88BGqieHM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1037261507168-s52mp70o944ld3ge4qisseumcrmub8j5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
