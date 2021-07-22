@@ -16,6 +16,7 @@ public class ContactViewModel extends AndroidViewModel {
         super(application);
         repo = new ContactsRepository(application);
         allContacts = repo.getAllContacts();
+
     }
 
     public void insert(Contact contact){
@@ -33,4 +34,6 @@ public class ContactViewModel extends AndroidViewModel {
     public LiveData<List<Contact>> getAllContacts() {
         return allContacts;
     }
+
+
 }

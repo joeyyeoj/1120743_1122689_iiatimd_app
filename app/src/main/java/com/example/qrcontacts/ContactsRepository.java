@@ -29,6 +29,7 @@ public class ContactsRepository {
         new DeleteContactAsyncTask(contactDAO).execute(contact);
     }
 
+
     public LiveData<List<Contact>> getAllContacts(){
         return allContacts;
     }
@@ -74,4 +75,5 @@ public class ContactsRepository {
             return null;
         }
     }
+
 }

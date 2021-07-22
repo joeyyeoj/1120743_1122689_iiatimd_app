@@ -10,6 +10,7 @@ import android.preference.PreferenceManager;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentActivity;
+import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -85,6 +86,8 @@ public class MainActivity extends AppCompatActivity {
                         for(int i=0; i < contactArray.length(); i++){
                             JSONObject contact = new JSONObject();
                             contact = contactArray.getJSONObject(i);
+
+                            //MAKING THE CONTACT
                             Contact newContact = new Contact(
                                     contact.getInt("id"),
                                     contact.getString("name"),

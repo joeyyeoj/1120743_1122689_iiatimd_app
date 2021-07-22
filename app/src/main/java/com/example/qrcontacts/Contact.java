@@ -2,11 +2,12 @@ package com.example.qrcontacts;
 
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
+import androidx.room.Index;
 import androidx.room.PrimaryKey;
 
 import java.util.Date;
 
-@Entity(tableName = "contacts")
+@Entity(tableName = "contacts", indices = {@Index(value = {"databaseId"}, unique = true)})
 public class Contact {
 
     public Contact(int databaseId, String name, String public_email, String telefoonnummer, String twitter, String facebook, String snapchat, String instagram, String linkedin, String tiktok, String geboortedatum){
@@ -28,6 +29,7 @@ public class Contact {
     protected int id;
 
     @ColumnInfo(name = "databaseId")
+
     protected int databaseId;
 
     @ColumnInfo(name = "name")
