@@ -61,27 +61,6 @@ public class MainActivity extends AppCompatActivity {
         token = prefs.getString("token", null);
         contactViewModel = ViewModelProviders.of(MainActivity.this).get(ContactViewModel.class);
 
-
-        //firebase dingetje voor fcm token :D
-//        FirebaseMessaging.getInstance().getToken()
-//                .addOnCompleteListener(new OnCompleteListener<String>() {
-//                    @Override
-//                    public void onComplete(@NonNull Task<String> task) {
-//                        if (!task.isSuccessful()) {
-//                            Log.w("oeps", "Fetching FCM registration token failed", task.getException());
-//                            return;
-//                        }
-//
-//                        // Get new FCM registration token
-//                        String token = task.getResult();
-//
-//                        // Log and toast
-//
-//                        Log.d("TokenFirebase", token);
-//                    }
-//                });
-
-
         //Initialize Bottom Navigation View.
         BottomNavigationView navView = findViewById(R.id.bottomNav_view);
         //Pass the ID's of Different destinations
