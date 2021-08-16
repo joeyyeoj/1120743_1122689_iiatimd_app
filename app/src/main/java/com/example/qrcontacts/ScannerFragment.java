@@ -1,7 +1,9 @@
 package com.example.qrcontacts;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -50,6 +52,7 @@ public class ScannerFragment extends Fragment {
     TextView tiktokValue;
     TextView geboortedatumValue;
     Button opslaanButton;
+    private String token;
 
 
    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstance){
@@ -86,6 +89,9 @@ public class ScannerFragment extends Fragment {
        integrator.setDesiredBarcodeFormats(IntentIntegrator.QR_CODE);
        integrator.initiateScan();
        db = AppDatabase.getInstance(getActivity());
+       SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getContext());
+       token = prefs.getString("token", null);
+
        return v;
     }
 
@@ -102,7 +108,7 @@ public class ScannerFragment extends Fragment {
                 results.setVisibility(View.VISIBLE);
                 Toast.makeText(getContext(), "Gestopt :(", Toast.LENGTH_LONG).show();
             } else {
-                JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, result.getContents(), null, new Response.Listener<JSONObject>() {
+                JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, result.getContents() + "?token=" + token, null, new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
                         if(result.getContents().startsWith("https://api-iiatmd.tychovanveen.nl/public/api/get_user/")){
@@ -123,10 +129,6 @@ public class ScannerFragment extends Fragment {
                                 String contactLinkedIn = contactObject.getString("linkedin");
                                 String contactTikTok = contactObject.getString("tiktok");
                                 String contactGeboortedatum = contactObject.getString("geboortedatum");
-                                String contactAdres = contactObject.getString("adres");
-                                String contactWoonplaats = contactObject.getString("woonplaats");
-                                String contactPostcode = contactObject.getString("postcode");
-                                String contactLand = contactObject.getString("land");
                                 contactViewModel = ViewModelProviders.of(getActivity()).get(ContactViewModel.class);
 //                                contact = new Contact(contactNaam, contactEmail, contactTelefoonnummer, contactTwitter, contactFacebook, contactSnapchat, contactInstagram, contactLinkedIn, contactTikTok, "test", contactAdres, contactWoonplaats, contactPostcode, contactLand);
                                 naamValue.setText(contactNaam);

@@ -44,7 +44,7 @@ public class GeneratorFragment extends Fragment {
                     JSONObject userObject = new JSONObject();
                     userObject = response.getJSONObject("user");
                     userId = userObject.getInt("id");
-                    qrvalue = "https://api-iiatmd.tychovanveen.nl/public/api/get_user/" + userId + "?token=" + token;
+                    qrvalue = "https://api-iiatmd.tychovanveen.nl/public/api/get_user/" + userId;
                     qrImage = (ImageView)v.findViewById(R.id.qrImage);
                     QRGEncoder qrgEncoder = new QRGEncoder(qrvalue, null, QRGContents.Type.TEXT, 500);
                     Bitmap qrBits = qrgEncoder.getBitmap();
