@@ -67,7 +67,7 @@ public class ProfileFragment extends Fragment {
         token = prefs.getString("token", null);
 
         logoutButton.setOnClickListener(new View.OnClickListener() {
-            String logoutUrl = "https://api-iiatmd.tychovanveen.nl/public/api/logout?token=" + token;
+            String logoutUrl = "https://polar-anchorage-54627.herokuapp.com/api/logout?token=" + token;
 
             @Override
             public void onClick(View v) {
@@ -106,7 +106,7 @@ public class ProfileFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 if(!naamInput.getText().toString().matches("")){
-                    String updateUserUrl = "https://api-iiatmd.tychovanveen.nl/public/api/update?token=" + token;
+                    String updateUserUrl = "https://polar-anchorage-54627.herokuapp.com/api/update?token=" + token;
                     StringRequest jsonObjectRequestUpdate = new StringRequest(Request.Method.PUT, updateUserUrl,  new Response.Listener<String>() {
                         @Override
                         public void onResponse(String response) {
@@ -158,25 +158,25 @@ public class ProfileFragment extends Fragment {
     }
 
     public void getUserData(){
-        String userUrl = "https://api-iiatmd.tychovanveen.nl/public/api/get_user_info?token=" + token;
+        String userUrl = "https://polar-anchorage-54627.herokuapp.com/api/get_user_info?token=" + token;
 
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, userUrl, null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
                 try {
                     JSONObject userObject = new JSONObject();
-//                    userObject = response.getJSONObject("user");
-//                    userLoginEmail = userObject.getString("email");
-//                    naamInput.setText(userObject.getString("name"));
-//                    emailInput.setText(userObject.getString("public_email"));
-//                    telefoonInput.setText(userObject.getString("telefoonnummer"));
-//                    twitterInput.setText(userObject.getString("twitter"));
-//                    facebookInput.setText(userObject.getString("facebook"));
-//                    instagramInput.setText(userObject.getString("instagram"));
-//                    snapchatInput.setText(userObject.getString("snapchat"));
-//                    linkedinInput.setText(userObject.getString("linkedin"));
-//                    tiktokInput.setText(userObject.getString("tiktok"));
-//                    birthdayInput.setText(userObject.getString("geboortedatum"));
+                    userObject = response.getJSONObject("user");
+                    userLoginEmail = userObject.getString("email");
+                    naamInput.setText(userObject.getString("name"));
+                    emailInput.setText(userObject.getString("public_email"));
+                    telefoonInput.setText(userObject.getString("telefoonnummer"));
+                    twitterInput.setText(userObject.getString("twitter"));
+                    facebookInput.setText(userObject.getString("facebook"));
+                    instagramInput.setText(userObject.getString("instagram"));
+                    snapchatInput.setText(userObject.getString("snapchat"));
+                    linkedinInput.setText(userObject.getString("linkedin"));
+                    tiktokInput.setText(userObject.getString("tiktok"));
+                    birthdayInput.setText(userObject.getString("geboortedatum"));
                 } catch (Exception e) {
                     e.printStackTrace();
                     Log.d("exception123", e.toString());
