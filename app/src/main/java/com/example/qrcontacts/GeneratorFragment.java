@@ -35,7 +35,7 @@ public class GeneratorFragment extends Fragment {
         View v = inflater.inflate(R.layout.generator_fragment, container, false);
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getContext());
         token = prefs.getString("token", null);
-        String userUrl = "https://api-iiatmd.tychovanveen.nl/public/api/get_user_info?token=" + token;
+        String userUrl = "https://polar-anchorage-54627.herokuapp.com/api/get_user_info?token=" + token;
 
         JsonObjectRequest jsonObjectRequestEigenData = new JsonObjectRequest(Request.Method.GET, userUrl, null, new Response.Listener<JSONObject>() {
             @Override
@@ -44,7 +44,7 @@ public class GeneratorFragment extends Fragment {
                     JSONObject userObject = new JSONObject();
                     userObject = response.getJSONObject("user");
                     userId = userObject.getInt("id");
-                    qrvalue = "https://api-iiatmd.tychovanveen.nl/public/api/get_user/" + userId;
+                    qrvalue = "https://polar-anchorage-54627.herokuapp.com/api/get_user/" + userId;
                     qrImage = (ImageView)v.findViewById(R.id.qrImage);
                     QRGEncoder qrgEncoder = new QRGEncoder(qrvalue, null, QRGContents.Type.TEXT, 500);
                     Bitmap qrBits = qrgEncoder.getBitmap();
