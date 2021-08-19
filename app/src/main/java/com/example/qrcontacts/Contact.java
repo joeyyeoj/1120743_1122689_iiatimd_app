@@ -62,8 +62,6 @@ public class Contact {
     @ColumnInfo(name = "geboortedatum")
     private String geboortedatum;
 
-
-
     public int getUuid(){
         return this.id;
     }
