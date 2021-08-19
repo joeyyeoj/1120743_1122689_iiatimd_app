@@ -108,10 +108,10 @@ public class ScannerFragment extends Fragment {
                 results.setVisibility(View.VISIBLE);
                 Toast.makeText(getContext(), "Gestopt :(", Toast.LENGTH_LONG).show();
             } else {
-                JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, result.getContents() + "?token=" + token, null, new Response.Listener<JSONObject>() {
+                JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, result.getContents() + "/?token=" + token, null, new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
-                        if(result.getContents().startsWith("https://api-iiatmd.tychovanveen.nl/public/api/get_user/")){
+                        if(result.getContents().startsWith("https://polar-anchorage-54627.herokuapp.com/api/get_user/")){
                             try {
                                 JSONObject contactResponse = new JSONObject();
                                 contactResponse = response;
@@ -157,7 +157,7 @@ public class ScannerFragment extends Fragment {
                 }, new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        results.setText("Oepsie, er is iets misgegaan met het ophalen van je nieuwe contact :( Weet je zeker dat je een QR code uit de app gebruikt en dat je internet het doet?");
+                        results.setText(error.toString());
                         results.setVisibility(View.VISIBLE);
                     }
                 });

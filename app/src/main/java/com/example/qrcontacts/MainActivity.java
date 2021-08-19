@@ -120,6 +120,56 @@ public class MainActivity extends AppCompatActivity {
         VolleySingleton.getInstance(this.getApplicationContext()).addToRequestQueue(jsonObjectRequest);
     }
 
+    @Override
+    protected void onResume(){
+        super.onResume();
+        String URL = BASE_URL + "getcontacts?token=" + token;
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, URL, null,  new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                try {
+                    if (response.get("success").toString().equals("true")) {
+                        JSONArray contactArray = new JSONArray();
+                        contactArray = (JSONArray) response.get("data");
+
+                        for(int i=0; i < contactArray.length(); i++){
+                            JSONObject contact = new JSONObject();
+                            contact = contactArray.getJSONObject(i);
+
+                            //MAKING THE CONTACT
+                            Contact newContact = new Contact(
+                                    contact.getInt("id"),
+                                    contact.getString("name"),
+                                    contact.getString("public_email"),
+                                    contact.getString("telefoonnummer"),
+                                    contact.getString("twitter"),
+                                    contact.getString("facebook"),
+                                    contact.getString("snapchat"),
+                                    contact.getString("instagram"),
+                                    contact.getString("linkedin"),
+                                    contact.getString("tiktok"),
+                                    contact.getString("geboortedatum")
+                            );
+
+                            contactViewModel.insert(newContact);
+                        }
+
+                    }
+                } catch (JSONException e) {
+                    Log.d("errorJsonMainActivity", e.getMessage());
+                }
+            }
+        },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Log.d("errorVolleyMainActivity", error.toString());
+                    }
+                });
+        VolleySingleton.getInstance(this.getApplicationContext()).addToRequestQueue(jsonObjectRequest);
+    }
+
+
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
