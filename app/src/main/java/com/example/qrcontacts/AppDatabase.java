@@ -10,7 +10,7 @@ import androidx.room.Room;
 import androidx.room.RoomDatabase;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 
-@Database(entities = {Contact.class}, version = 123456)
+@Database(entities = {Contact.class}, version = 123457)
 public abstract class AppDatabase extends RoomDatabase {
     public abstract ContactDAO contactsDAO();
 
