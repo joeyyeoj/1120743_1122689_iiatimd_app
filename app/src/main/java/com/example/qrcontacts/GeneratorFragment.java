@@ -14,6 +14,8 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 
 import com.android.volley.Request;
 import com.android.volley.Response;
@@ -30,12 +32,22 @@ public class GeneratorFragment extends Fragment {
     private String qrvalue;
     protected Integer userId;
     private String token;
+    private Button scanButton;
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstance){
         View v = inflater.inflate(R.layout.generator_fragment, container, false);
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getContext());
         token = prefs.getString("token", null);
+        scanButton = v.findViewById(R.id.scanButton);
         String userUrl = "https://polar-anchorage-54627.herokuapp.com/api/get_user_info?token=" + token;
+
+        scanButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                NavController navcontroller = Navigation.findNavController(v);
+                navcontroller.navigate(R.id.navigation_scan);
+            }
+        });
 
         JsonObjectRequest jsonObjectRequestEigenData = new JsonObjectRequest(Request.Method.GET, userUrl, null, new Response.Listener<JSONObject>() {
             @Override
