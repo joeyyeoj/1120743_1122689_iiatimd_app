@@ -109,7 +109,7 @@ public class ScannerFragment extends Fragment {
                 results.setVisibility(View.VISIBLE);
                 Toast.makeText(getContext(), "Gestopt :(", Toast.LENGTH_LONG).show();
             } else {
-                JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, result.getContents() + "/?token=" + token, null, new Response.Listener<JSONObject>() {
+                JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, result.getContents() + "?token=" + token, null, new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
                         if(result.getContents().startsWith("https://polar-anchorage-54627.herokuapp.com/api/get_user/")){
@@ -162,7 +162,7 @@ public class ScannerFragment extends Fragment {
                 }, new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        results.setText(error.toString());
+                        results.setText(error.getMessage());
                         results.setVisibility(View.VISIBLE);
                     }
                 });
