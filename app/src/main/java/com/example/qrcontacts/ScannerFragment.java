@@ -78,6 +78,24 @@ public class ScannerFragment extends Fragment {
            public void onClick(View v) {
                contactViewModel.insert(contact);
                scannedContact.setVisibility(View.INVISIBLE);
+               String newContactUrl = "https://polar-anchorage-54627.herokuapp.com/api/addcontact?token=" + token + "&contactId=" + contact.getDatabaseId();
+               JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, newContactUrl, null, new Response.Listener<JSONObject>() {
+                   @Override
+                   public void onResponse(JSONObject response) {
+                       try {
+                           // do nothing.
+                       } catch (Exception e) {
+                           Log.d("Error", e.toString());
+                       }
+                   }
+               }, new Response.ErrorListener() {
+                   @Override
+                   public void onErrorResponse(VolleyError error) {
+                       Log.d("error", error.toString());
+                   }
+               });
+               VolleySingleton.getInstance(getActivity()).addToRequestQueue(jsonObjectRequest);
+
                NavController navcontroller = Navigation.findNavController(v);
                navcontroller.navigate(R.id.navigation_contacts);
            }
