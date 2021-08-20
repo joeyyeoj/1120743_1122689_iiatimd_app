@@ -139,6 +139,7 @@ public class ProfileFragment extends Fragment {
                             params.put("instagram", instagramInput.getText().toString());
                             params.put("linkedin", linkedinInput.getText().toString());
                             params.put("tiktok", tiktokInput.getText().toString());
+                            params.put("geboortedatum", birthdayInput.getText().toString());
                             return params;
                         }
                     };
