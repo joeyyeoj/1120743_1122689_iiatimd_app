@@ -10,7 +10,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.cardview.widget.CardView;
@@ -28,7 +27,6 @@ import com.android.volley.toolbox.Volley;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
-import org.json.JSONArray;
 import org.json.JSONObject;
 
 
@@ -53,6 +51,7 @@ public class ScannerFragment extends Fragment {
     TextView tiktokValue;
     TextView geboortedatumValue;
     Button opslaanButton;
+    Button scanAgainButton;
     private String token;
 
 
@@ -72,7 +71,18 @@ public class ScannerFragment extends Fragment {
        geboortedatumValue = v.findViewById(R.id.geboortedatumValue);
        results = v.findViewById(R.id.qrResult);
        results.setVisibility(View.INVISIBLE);
+       scanAgainButton = v.findViewById(R.id.scanButton);
+       scanAgainButton.setVisibility(View.INVISIBLE);
        opslaanButton = v.findViewById(R.id.closeContactButton);
+
+       scanAgainButton.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View v) {
+               NavController navcontroller = Navigation.findNavController(v);
+               navcontroller.navigate(R.id.navigation_scan);
+           }
+       });
+
        opslaanButton.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View v) {
@@ -103,7 +113,7 @@ public class ScannerFragment extends Fragment {
        queue =  Volley.newRequestQueue(v.getContext());
        IntentIntegrator integrator = IntentIntegrator.forSupportFragment(ScannerFragment.this);
        integrator.setOrientationLocked(false);
-       integrator.setPrompt("Scan QR code");
+       integrator.setPrompt("Scan QR-code");
        integrator.setBeepEnabled(false);
        integrator.setDesiredBarcodeFormats(IntentIntegrator.QR_CODE);
        integrator.initiateScan();
@@ -115,17 +125,15 @@ public class ScannerFragment extends Fragment {
     }
 
 
-
-
-
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
         if(result != null) {
             if(result.getContents() == null) {
-                results.setText("Scanner gestopt :(");
+                results.setText("De Scanner is gestopt :(");
                 results.setVisibility(View.VISIBLE);
-                Toast.makeText(getContext(), "Gestopt :(", Toast.LENGTH_LONG).show();
+                scanAgainButton.setVisibility(View.VISIBLE);
+//                Toast.makeText(getContext(), "Gestopt :(", Toast.LENGTH_LONG).show();
             } else {
                 JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, result.getContents() + "?token=" + token, null, new Response.Listener<JSONObject>() {
                     @Override
@@ -135,12 +143,6 @@ public class ScannerFragment extends Fragment {
                                 Log.d("scannen", String.valueOf(response.get("user")));
                                 JSONObject info = response.getJSONObject("user");
                                 Log.d("scannen", String.valueOf(info.get("name")));
-//                                JSONObject contactResponse = new JSONObject();
-//                                contactResponse = response;
-//                                JSONArray userInfoArray = new JSONArray();
-//                                userInfoArray = (JSONArray) response.get("user");
-//                                JSONObject contactObject = new JSONObject();
-//                                contactObject = (JSONObject) userInfoArray.get(0);
                                 int contactId = (int) info.get("id");
                                 String contactNaam = String.valueOf(info.get("name"));
                                 String contactEmail = String.valueOf(info.get("public_email"));
@@ -173,7 +175,7 @@ public class ScannerFragment extends Fragment {
                             }
                         }
                         else{
-                            results.setText("Oeps! Dat is geen geldige QR code :(");
+                            results.setText("Oeps! Dit is geen geldige QR code :(");
                             results.setVisibility(View.VISIBLE);
                         }
                     }
