@@ -4,7 +4,7 @@
     <string name="title_home">Mijn profiel</string>
     <string name="title_scan">Scannen</string>
     <string name="title_contacts">Contactboek</string>
-    <string name="noscanyet">Nog niets gescand :(</string>
+    <string name="noscanyet">Er is nog niets gescand :(</string>
     <string name="naamLabel">Naam:</string>
     <string name="emailLabel">Email:</string>
     <string name="telefoonnummerLabel">Telefoon:</string>
@@ -20,7 +20,7 @@
     <string name="postcodeLabel">Postcode:</string>
     <string name="landLabel">Land:</string>
     <string name="opslaanLabel">Toevoegen aan contacten</string>
-    <string name="closeContactLabel">Sluiten</string>
+    <string name="closeContactLabel">Terug</string>
     <string name="delenButtonText">Delen</string>
     <string name="opslaanbuttontekst">Opslaan</string>
     <string name="logoutKnopText">Uitloggen</string>
