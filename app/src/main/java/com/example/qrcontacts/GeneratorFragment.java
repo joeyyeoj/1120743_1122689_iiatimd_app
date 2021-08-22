@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
@@ -24,6 +25,15 @@ import com.android.volley.toolbox.JsonObjectRequest;
 
 import org.json.JSONObject;
 
+import java.net.InetAddress;
+import java.net.UnknownHostException;
+import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.TimeoutException;
+
 import androidmads.library.qrgenearator.QRGContents;
 import androidmads.library.qrgenearator.QRGEncoder;
 
@@ -33,12 +43,36 @@ public class GeneratorFragment extends Fragment {
     protected Integer userId;
     private String token;
     private Button scanButton;
+    private TextView noInternet;
+
+    private boolean internetConnectionAvailable(int timeOut) {
+        InetAddress inetAddress = null;
+        try {
+            Future<InetAddress> future = Executors.newSingleThreadExecutor().submit(new Callable<InetAddress>() {
+                @Override
+                public InetAddress call() {
+                    try {
+                        return InetAddress.getByName("google.com");
+                    } catch (UnknownHostException e) {
+                        return null;
+                    }
+                }
+            });
+            inetAddress = future.get(timeOut, TimeUnit.MILLISECONDS);
+            future.cancel(true);
+        } catch (InterruptedException e) {
+        } catch (ExecutionException e) {
+        } catch (TimeoutException e) {
+        }
+        return inetAddress!=null && !inetAddress.equals("");
+    }
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstance){
         View v = inflater.inflate(R.layout.generator_fragment, container, false);
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getContext());
         token = prefs.getString("token", null);
         scanButton = v.findViewById(R.id.scanButton);
+        noInternet = v.findViewById(R.id.noInternetText);
         String userUrl = "https://polar-anchorage-54627.herokuapp.com/api/get_user_info?token=" + token;
 
         scanButton.setOnClickListener(new View.OnClickListener() {
@@ -72,7 +106,12 @@ public class GeneratorFragment extends Fragment {
             }
         });
 
-        VolleySingleton.getInstance(getActivity()).addToRequestQueue(jsonObjectRequestEigenData);
+        if (internetConnectionAvailable(2000)) {
+            VolleySingleton.getInstance(getActivity()).addToRequestQueue(jsonObjectRequestEigenData);
+            noInternet.setVisibility(View.INVISIBLE);
+        } else {
+            noInternet.setVisibility(View.VISIBLE);
+        }
 
         return v;
     }
