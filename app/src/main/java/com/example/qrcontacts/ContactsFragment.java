@@ -44,6 +44,61 @@ public class ContactsFragment extends Fragment {
     EditText searchbar;
     ContactAdapter adapter;
 
+    public String checkIfNull(String value) {
+        if (value.equals("")) {
+            return "-";
+        } else {
+            return value;
+        }
+    }
+
+    public String twitterLink(String value) {
+        if (value.equals("-")) {
+            return value;
+        } else {
+            return "https://twitter.com/" + value + "/";
+        }
+    }
+
+    public String linkedinLink(String value) {
+        if (value.equals("-")) {
+            return value;
+        } else {
+            return "https://linkedin.com/in/" + value + "/";
+        }
+    }
+
+    public String instagramLink(String value) {
+        if (value.equals("-")) {
+            return value;
+        } else {
+            return "https://instagram.com/" + value + "/";
+        }
+    }
+
+    public String snapchatLink(String value) {
+        if (value.equals("-")) {
+            return value;
+        } else {
+            return "https://snapchat.com/add/" + value + "/";
+        }
+    }
+
+    public String facebookLink(String value) {
+        if (value.equals("-")) {
+            return value;
+        } else {
+            return "https://facebook.com/" + value + "/";
+        }
+    }
+
+    public String tiktokLink(String value) {
+        if (value.equals("-")) {
+            return value;
+        } else {
+            return "https://tiktok.com/@" + value + "/";
+        }
+    }
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstance){
         View v = inflater.inflate(R.layout.contacts_fragment, container, false);
@@ -79,14 +134,6 @@ public class ContactsFragment extends Fragment {
         });
         searchbar.setInputType(InputType.TYPE_CLASS_TEXT);
         closeContactButton = v.findViewById(R.id.closeContactButton);
-        closeContactButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                clickedContact.setVisibility(View.INVISIBLE);
-            }
-        });
-
-
 
 
         RecyclerView recyclerView = v.findViewById(R.id.contactRecyclerView);
@@ -94,6 +141,14 @@ public class ContactsFragment extends Fragment {
         recyclerView.setHasFixedSize(false);
         adapter = new ContactAdapter();
         recyclerView.setAdapter(adapter);
+
+        closeContactButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                clickedContact.setVisibility(View.GONE);
+                recyclerView.setVisibility(View.VISIBLE);
+            }
+        });
 
         contactViewModel = ViewModelProviders.of(getActivity()).get(ContactViewModel.class);
         contactViewModel.getAllContacts().observe(getViewLifecycleOwner(), new Observer<List<Contact>>() {
@@ -106,17 +161,18 @@ public class ContactsFragment extends Fragment {
         adapter.setOnItemClickListener(new ContactAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(Contact contact) {
-                naamValue.setText(contact.getName());
-                emailValue.setText(contact.getPublic_email());
-                telefoonValue.setText(contact.getTelefoonnummer());
-                twitterValue.setText(contact.getTwitter());
-                facebookValue.setText(contact.getFacebook());
-                snapchatValue.setText(contact.getSnapchat());
-                instagramValue.setText(contact.getInstagram());
-                linkedinValue.setText(contact.getLinkedin());
-                tiktokValue.setText(contact.getTiktok());
-                geboortedatumValue.setText(contact.getGeboortedatum());
+                naamValue.setText(checkIfNull(contact.getName()));
+                emailValue.setText(checkIfNull(contact.getPublic_email()));
+                telefoonValue.setText(checkIfNull(contact.getTelefoonnummer()));
+                twitterValue.setText(twitterLink(checkIfNull(contact.getTwitter())));
+                facebookValue.setText(facebookLink(checkIfNull(contact.getFacebook())));
+                snapchatValue.setText(snapchatLink(checkIfNull(contact.getSnapchat())));
+                instagramValue.setText(instagramLink(checkIfNull(contact.getInstagram())));
+                linkedinValue.setText(linkedinLink(checkIfNull(contact.getLinkedin())));
+                tiktokValue.setText(tiktokLink(checkIfNull(contact.getTiktok())));
+                geboortedatumValue.setText(checkIfNull(contact.getGeboortedatum()));
                 clickedContact.setVisibility(View.VISIBLE);
+                recyclerView.setVisibility(View.GONE);
                 clickedContact.requestFocus();
             }
         });
