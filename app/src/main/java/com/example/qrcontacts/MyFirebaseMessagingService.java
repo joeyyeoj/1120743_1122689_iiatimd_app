@@ -36,7 +36,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
         String channelId = "1";
         NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this, channelId)
-            .setContentTitle("Contact update:").setContentText(messageBody + " heeft hun gegevens aangepast!").setSmallIcon(R.mipmap.ic_launcher).setAutoCancel(true).setContentIntent(pendingIntent);
+            .setContentTitle("Contact update:").setContentText(messageBody + " heeft zijn gegevens aangepast!").setSmallIcon(R.drawable.ic_baseline_contacts_24).setAutoCancel(true).setContentIntent(pendingIntent);
 
         NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
         NotificationChannel channel = new NotificationChannel(channelId, "Notificaties", NotificationManager.IMPORTANCE_DEFAULT);
