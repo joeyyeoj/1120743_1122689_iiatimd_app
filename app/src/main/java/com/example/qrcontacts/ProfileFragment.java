@@ -99,7 +99,6 @@ public class ProfileFragment extends Fragment {
         logoutButton = v.findViewById(R.id.logoutButton);
         content = v.findViewById(R.id.content);
         offlineText = v.findViewById(R.id.offlineText);
-//        token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvYXBpLWlpYXRtZC50eWNob3ZhbnZlZW4ubmxcL3B1YmxpY1wvYXBpXC9sb2dpbiIsImlhdCI6MTYyNTM4Nzk5MiwibmJmIjoxNjI1Mzg3OTkyLCJqdGkiOiJYMkRrQ0pRVFFLVHNpNzg0Iiwic3ViIjoxLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0._WYYrRMGioucJv_RZ-ey6HCm7U6d8FRWvSeoWq6QtEY";
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getContext());
         token = prefs.getString("token", null);
 
@@ -177,6 +176,7 @@ public class ProfileFragment extends Fragment {
                             params.put("instagram", instagramInput.getText().toString());
                             params.put("linkedin", linkedinInput.getText().toString());
                             params.put("tiktok", tiktokInput.getText().toString());
+                            params.put("geboortedatum", birthdayInput.getText().toString());
                             return params;
                         }
                     };
