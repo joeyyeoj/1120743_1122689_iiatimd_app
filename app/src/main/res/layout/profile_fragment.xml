@@ -345,7 +345,6 @@
                     android:backgroundTint="@color/dark_orange_darker"
                     android:fontFamily="@font/open_sans"
                     android:hint="Email"
-                    android:inputType="textEmailAddress"
                     android:singleLine="true"
                     android:text=" "
                     android:textSize="18sp"

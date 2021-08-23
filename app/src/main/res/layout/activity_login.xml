@@ -5,10 +5,48 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <Button
+        android:id="@+id/btnLogin"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="32dp"
+        android:background="@drawable/primary_button"
+        android:fontFamily="@font/open_sans_bold"
+        android:text="Login"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@+id/btnRegister"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <Button
+        android:id="@+id/btnRegister"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginStart="64dp"
+        android:layout_marginEnd="64dp"
+        android:layout_marginBottom="16dp"
+        android:fontFamily="@font/open_sans"
+        android:text="Registreren"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        app:backgroundTint="@color/light_orange"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+        app:layout_constraintVertical_bias="1.0" />
+
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/open_sans_extrabold"
         android:text="QRcontacts"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textSize="48sp"
@@ -25,7 +63,6 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginEnd="32dp"
-        android:layout_marginBottom="32dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -34,55 +71,39 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
-            android:id="@+id/textView3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingBottom="8dp"
-            android:text="Login"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:textSize="34sp" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:fontFamily="@font/open_sans"
             android:text="Email: " />
 
         <EditText
             android:id="@+id/edtUsername"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:backgroundTint="@color/dark_orange_darker"
             android:ems="10"
-            android:inputType="textPersonName" />
+            android:fontFamily="@font/open_sans"
+            android:inputType="textPersonName"
+            android:textColorHighlight="@color/dark_orange_darker"
+            android:textColorHint="@color/dark_orange_darker"
+            android:textColorLink="@color/dark_orange_darker" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/open_sans"
             android:text="Wachtwoord: " />
 
         <EditText
             android:id="@+id/edtPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="textPassword" />
-
-        <Button
-            android:id="@+id/btnLogin"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingTop="16dp"
-            android:paddingBottom="16dp"
-            android:text="Login"
-            app:backgroundTint="#3F51B5" />
-
-        <Button
-            android:id="@+id/btnRegister"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:paddingTop="16dp"
-            android:paddingBottom="16dp"
-            android:text="Registreren"
-            app:backgroundTint="#2196F3" />
+            android:backgroundTint="@color/dark_orange_darker"
+            android:fontFamily="@font/open_sans"
+            android:inputType="textPassword"
+            android:textColorHighlight="@color/dark_orange_darker"
+            android:textColorHint="@color/dark_orange_darker"
+            android:textColorLink="@color/dark_orange_darker" />
 
     </LinearLayout>
 
