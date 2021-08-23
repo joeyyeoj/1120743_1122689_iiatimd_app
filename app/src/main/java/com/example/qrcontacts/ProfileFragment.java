@@ -62,7 +62,6 @@ public class ProfileFragment extends Fragment {
         delenbutton = v.findViewById(R.id.delenButton);
         opslaanButton = v.findViewById(R.id.opslaanButton);
         logoutButton = v.findViewById(R.id.logoutButton);
-//        token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvYXBpLWlpYXRtZC50eWNob3ZhbnZlZW4ubmxcL3B1YmxpY1wvYXBpXC9sb2dpbiIsImlhdCI6MTYyNTM4Nzk5MiwibmJmIjoxNjI1Mzg3OTkyLCJqdGkiOiJYMkRrQ0pRVFFLVHNpNzg0Iiwic3ViIjoxLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0._WYYrRMGioucJv_RZ-ey6HCm7U6d8FRWvSeoWq6QtEY";
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getContext());
         token = prefs.getString("token", null);
 
