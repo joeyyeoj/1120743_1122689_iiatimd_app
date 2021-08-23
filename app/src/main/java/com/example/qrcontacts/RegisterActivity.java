@@ -46,7 +46,7 @@ public class RegisterActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<String> task) {
                         if (!task.isSuccessful()) {
-                            Log.w("oeps", "Fetching FCM registration token failed", task.getException());
+//                            Log.w("oeps", "Fetching FCM registration token failed", task.getException());
                             return;
                         }
                         fcmToken = task.getResult();

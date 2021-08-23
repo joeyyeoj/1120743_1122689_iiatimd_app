@@ -230,9 +230,9 @@ public class ScannerFragment extends Fragment {
                     public void onResponse(JSONObject response) {
                         if(result.getContents().startsWith("https://polar-anchorage-54627.herokuapp.com/api/get_user/")){
                             try {
-                                Log.d("scannen", String.valueOf(response.get("user")));
+//                                Log.d("scannen", String.valueOf(response.get("user")));
                                 JSONObject info = response.getJSONObject("user");
-                                Log.d("scannen", String.valueOf(info.get("name")));
+//                                Log.d("scannen", String.valueOf(info.get("name")));
                                 int contactId = (int) info.get("id");
                                 String contactNaam = checkIfNull(String.valueOf(info.get("name")));
                                 String contactEmail = checkIfNull(String.valueOf(info.get("public_email")));

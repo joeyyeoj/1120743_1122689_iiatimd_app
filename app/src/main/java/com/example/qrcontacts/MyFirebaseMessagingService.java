@@ -28,7 +28,6 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
     @Override
     public void onNewToken(String token){
-        Log.d("Refreshed token: ", token);
     }
 
     @RequiresApi(api = Build.VERSION_CODES.O)

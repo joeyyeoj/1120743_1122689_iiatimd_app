@@ -224,7 +224,7 @@ public class ProfileFragment extends Fragment {
                     birthdayInput.setText(userObject.getString("geboortedatum"));
                 } catch (Exception e) {
                     e.printStackTrace();
-                    Log.d("exception123", e.toString());
+//                    Log.d("exception123", e.toString());
                 }
             }
         }, new Response.ErrorListener() {

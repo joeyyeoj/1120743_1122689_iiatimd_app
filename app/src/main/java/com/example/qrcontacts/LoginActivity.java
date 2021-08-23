@@ -53,7 +53,7 @@ public class LoginActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<String> task) {
                         if (!task.isSuccessful()) {
-                            Log.w("oeps", "Fetching FCM registration token failed", task.getException());
+//                            Log.w("oeps", "Fetching FCM registration token failed", task.getException());
                             return;
                         }
                         fcmToken = task.getResult();
@@ -107,7 +107,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onResponse(JSONObject response) {
                 try {
-                    Log.d("token", response.get("token").toString());
+//                    Log.d("token", response.get("token").toString());
                     if (response.get("success").toString().equals("true")) {
                         Toast.makeText(LoginActivity.this, "Je bent ingelogd", Toast.LENGTH_LONG).show();
                         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(LoginActivity.this);
